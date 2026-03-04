@@ -2,7 +2,9 @@
 
 An interactive analytics dashboard for your [Hevy](https://hevy.com) workout data, built with Streamlit and Plotly.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hevy-dashboard.streamlit.app)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://p6ubhwvednjzqlfyiwmw72.streamlit.app/)
+
+![Dashboard demo](hevy_dashboard_demo.gif)
 
 ---
 

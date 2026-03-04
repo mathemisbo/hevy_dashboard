@@ -213,5 +213,4 @@ __marimo__/
 .hevy_cache.json
 all_workouts.json
 exercise_templates.json
-screenshots/
 screenshot_sections.py
