@@ -21,7 +21,7 @@ st.set_page_config(
     page_title="Hevy Dashboard",
     page_icon="🏋️",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ── Theme colors ───────────────────────────────────────────────────────────────
@@ -100,30 +100,12 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ── Sidebar ────────────────────────────────────────────────────────────────────
-with st.sidebar:
-    st.markdown("### ⚙️ Settings")
-    # Priority: st.secrets → env var → manual input
-    _default_key = st.secrets.get("HEVY_API_KEY", os.getenv("HEVY_API_KEY", ""))
-    api_key = st.text_input(
-        "Hevy API Key",
-        value=_default_key,
-        type="password",
-        placeholder="Paste your Hevy API key",
-    )
-    if st.button("🔄 Refresh Data", use_container_width=True):
-        st.cache_data.clear()
-        st.rerun()
+# ── API key (from secrets only — never exposed in UI) ──────────────────────────
+api_key = st.secrets.get("HEVY_API_KEY", os.getenv("HEVY_API_KEY", ""))
 
-    st.markdown("---")
-    unit = st.radio("Weight Unit", ["kg", "lbs"], index=0)
-    weight_factor = 1.0 if unit == "kg" else 2.20462
-
-    st.markdown("---")
-    st.markdown(
-        "<div style='color:#8892A4;font-size:0.78rem;'>Data from <a href='https://hevy.com' style='color:#E84545'>Hevy App</a></div>",
-        unsafe_allow_html=True,
-    )
+# ── Fixed units ────────────────────────────────────────────────────────────────
+unit_label = "kg"
+weight_factor = 1.0
 
 
 # ── Data loading ───────────────────────────────────────────────────────────────
@@ -148,13 +130,6 @@ df_s = dfs["sets"].copy()
 df_prs = dfs["prs"].copy()
 
 # Apply weight conversion
-if weight_factor != 1.0:
-    df_w["volume_kg"] *= weight_factor
-    df_s["weight_kg"] = df_s["weight_kg"] * weight_factor
-    df_s["volume_kg"] = df_s["volume_kg"] * weight_factor
-    df_prs["weight_kg"] = df_prs["weight_kg"] * weight_factor
-
-unit_label = unit
 
 
 # ── Helper: plotly defaults ────────────────────────────────────────────────────
