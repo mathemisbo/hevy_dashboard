@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Streamlit secrets (contains API keys — never commit)
+.streamlit/secrets.toml
+
+# Hevy data cache
+.hevy_cache.json
+all_workouts.json
+exercise_templates.json
+screenshots/
+screenshot_sections.py
