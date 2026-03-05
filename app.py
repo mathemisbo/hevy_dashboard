@@ -237,9 +237,9 @@ with col_cal:
             hovertemplate="%{text}<br>%{z} workout(s)<extra></extra>",
             colorscale=[
                 [0.0, "#1C2135"],
-                [0.01, "#2A3A6E"],
-                [0.5, ACCENT],
-                [1.0, "#FF8585"],
+                [0.01, "#1a4731"],
+                [0.5, "#2ea84e"],
+                [1.0, "#50FA7B"],
             ],
             showscale=False,
             xgap=3,
